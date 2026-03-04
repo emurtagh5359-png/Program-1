@@ -23,17 +23,20 @@ rent = 0;
 }
 MonopolySpace(string propertyName, string propertyColor, int value, int rent) {
 /* TODO: Define overloaded constructor here */
+    this->propertyName = propertyName;
+    this->propertyColor = propertyColor;
+    this->value = value;
+    this->rent = rent;
 }
 bool isEqual(MonopolySpace other) {
-/* TODO: Define isEqual here (compare by name is fine if you enforce
-uniqueness) */
-return false;
+/* TODO: Define isEqual here (compare by name is fine if you enforce uniqueness) */
+    return (propertyName == other.propertyName);
 }
 void print() {
 /* TODO: Define print here */
 // Example style:
-// cout << propertyName << " | " << propertyColor << " | $" << value << " |
-Rent " << rent;
+cout << propertyName << " | " << propertyColor << " | $" << value << " | Rent " << rent;
+
 }
 };
 // -------------------------------
@@ -42,12 +45,13 @@ Rent " << rent;
 template <typename T>
 class Node {
 public:
-T data;
-Node<T>* nextNode;
-Node(T value) {
-data = value;
-nextNode = nullptr;
-}
+    T data;
+    Node<T>* nextNode;
+
+    Node(T value) {
+        data = value;
+        nextNode = nullptr;
+    }
 };
 // -------------------------------
 // Template Circular Linked List class
@@ -148,7 +152,7 @@ bool removeByName(string name) {
 // - deleting tail
 // - deleting the only-node list
 // - Maintain circular link tail->next=head
-// - If playerNode points to deleted node, move playerNode to a safe node
+// - If playerNode points to a deleted node, move playerNode to a safe node
 // - nodeCount--
 cout << "removeByName unwritten" << endl;
 return false;
@@ -216,7 +220,7 @@ CircularLinkedList<MonopolySpace> board;
 //
 // Example (hardcoded) usage:
 // vector<MonopolySpace> spaces;
-// spaces.push_back(MonopolySpace("GO","None",0,0));
+// spaces.push_back(MonopolySpace("GO", "None",0,0));
 // ...
 // board.addMany(spaces);
 //
