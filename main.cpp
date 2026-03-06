@@ -119,8 +119,14 @@ int addMany(vector<T> values) {
 // - Stop exactly when you reach MAX_SPACES
 // - Return number successfully added
 // - Do not corrupt pointers if capacity is exceeded
-cout << "addMany unwritten" << endl;
-return 0;
+        int added = 0;
+        for (int i = 0; i < values.size(); i++) {
+            if (!addSpace(values[i])) {
+                break;
+            }
+            added++;
+        }
+        return added;
 }
 // -------------------------------
 // Core C: Traversal-Based Player Movement
