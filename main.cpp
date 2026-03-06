@@ -60,19 +60,20 @@ public:
 template <typename T>
 class CircularLinkedList {
 private:
-Node<T>* headNode;
-Node<T>* tailNode;
-// player cursor for traversal-based gameplay
-Node<T>* playerNode;
-int nodeCount;
-int passGoCount;
+    Node<T>* headNode;
+    Node<T>* tailNode;
+    // player cursor for traversal-based gameplay
+    Node<T>* playerNode;
+    int nodeCount;
+    int passGoCount;
+
 public:
-CircularLinkedList() {
-headNode = nullptr;
-tailNode = nullptr;
-playerNode = nullptr;
-nodeCount = 0;
-passGoCount = 0;
+    CircularLinkedList() {
+        headNode = nullptr;
+        tailNode = nullptr;
+        playerNode = nullptr;
+        nodeCount = 0;
+        passGoCount = 0;
 }
 // -------------------------------
 // Board Construction Policy (Reminder)
@@ -90,12 +91,24 @@ passGoCount = 0;
 bool addSpace(T value) {
 // TODO:
 // - If nodeCount == MAX_SPACES return false (do not corrupt list)
+        if (nodeCount == MAX_SPACES) {
+            return false;
+        }
 // - Create new node
+        Node<T>* newNode = new Node<T>(value);
 // - If empty list: head=tail=player=new, new->next=head
+        if (headNode == nullptr) {
+            headNode = tailNode = playerNode = newNode;
+            newNode->nextNode = headNode;
+            nodeCount++;
+            return true;
+        }
 // - Else: tail->next=new, tail=new, tail->next=head
-// - nodeCount++
-cout << "addSpace unwritten" << endl;
-return false;
+            tailNode->nextNode = newNode;
+            tailNode = newNode;
+            tailNode->nextNode = headNode;
+            nodeCount++;
+            return true;
 }
 // -------------------------------
 // Core B: Add Multiple Spaces at Once
