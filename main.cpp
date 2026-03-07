@@ -138,7 +138,16 @@ void movePlayer(int steps) {
 // - Detect and track passing GO:
 // increment passGoCount when a move crosses from tail back to head
 // - Must handle empty list safely
-cout << "movePlayer unwritten" << endl;
+        if (playerNode == nullptr || headNode == nullptr || steps == 0) {
+            return;
+        }
+
+        for (int i = 0; i < steps; i++) {
+            if (playerNode == tailNode) {
+                passGoCount++;
+            }
+            playerNode = playerNode->nextNode;
+        }
 }
 int getPassGoCount() {
 return passGoCount;
