@@ -177,8 +177,18 @@ void printFromPlayer(int count) {
 void printBoardOnce() {
 // TODO:
 // - Traverse exactly one full cycle and print each node
+        if (headNode == nullptr) {
+            return;
+        }
 
-cout << "printBoardOnce unwritten" << endl;
+        Node<T>* currentNode = headNode;
+
+        do {
+            currentNode -> data.print();
+            cout << endl;
+            currentNode = currentNode->nextNode;
+        }
+        while (currentNode != headNode);
 }
 // -------------------------------
 // Advanced Option A (Level 1): removeByName
