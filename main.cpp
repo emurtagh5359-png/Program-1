@@ -235,7 +235,7 @@ void mirrorBoard() {
         Node<T>* previousNode = tailNode;
         Node<T>* nextNode = nullptr;
 
-        for (int i = 0; i < nodeCount; i++) {
+        for (int i = 0; i < countSpaces(); i++) {
             nextNode = currentNode->nextNode;
             currentNode -> nextNode = previousNode;
             previousNode = currentNode;
@@ -253,20 +253,49 @@ int countSpaces() {
 // TODO:
 // - Must be O(n), traverse exactly once with correct stop condition
 // - Do NOT rely on nodeCount for this method
-cout << "countSpaces unwritten" << endl;
-return 0;
+        if (headNode == nullptr) {
+            return 0;
+        }
+
+        int count = 0;
+        Node<T>* currentNode = headNode;
+        do {
+            count++;
+            currentNode = currentNode->nextNode;
+        }
+        while (currentNode != headNode);
+
+        return count;
 }
 // -------------------------------
 // Cleanup
 // -------------------------------
-void clear() {
+    void clear() {
 // TODO:
 // - Safely delete all nodes
-// - Tip: if tailNode exists, break the cycle first: tailNode->nextNode =
-nullptr
+// - Tip: if tailNode exists, break the cycle first: tailNode->nextNode =nullptr
 // - Then delete like a normal singly linked list
-cout << "clear unwritten" << endl;
-}
+        if (headNode == nullptr) {
+            return;
+        }
+
+        if (tailNode != nullptr) {
+            tailNode->nextNode = nullptr;
+        }
+
+        Node<T>* currentNode = headNode;
+        while (currentNode != nullptr) {
+            Node<T>* next = currentNode->nextNode;
+            delete currentNode;
+            currentNode = next;
+        }
+
+        headNode = nullptr;
+        tailNode = nullptr;
+        playerNode = nullptr;
+        nodeCount = 0;
+        passGoCount = 0;
+    }
 };
 // -------------------------------
 // Main: playable loop demo
