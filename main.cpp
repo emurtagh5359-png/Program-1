@@ -227,7 +227,24 @@ void mirrorBoard() {
 // - Preserve circular structure
 // - Correctly handle empty list and single-node list
 // - Player cursor must remain on the same logical space after reversal
-cout << "mirrorBoard unwritten" << endl;
+        if (headNode == nullptr || tailNode == headNode) {
+            return;
+        }
+
+        Node<T>* currentNode = headNode;
+        Node<T>* previousNode = tailNode;
+        Node<T>* nextNode = nullptr;
+
+        for (int i = 0; i < nodeCount; i++) {
+            nextNode = currentNode->nextNode;
+            currentNode -> nextNode = previousNode;
+            previousNode = currentNode;
+            currentNode = nextNode;
+        }
+
+        Node<T>* temp = headNode;
+        headNode = tailNode;
+        tailNode = temp;
 }
 // -------------------------------
 // Edge-case helper: countSpaces O(n)
